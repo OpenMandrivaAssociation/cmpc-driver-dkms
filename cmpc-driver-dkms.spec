@@ -1,6 +1,6 @@
 Name:			cmpc-driver-dkms
 Version:		0.1.1
-Release:		%mkrel 2
+Release:		%mkrel 3
 
 Summary:        Driver for Classmate PC
 License:        GPLv2+
@@ -30,9 +30,15 @@ cp -f * %{buildroot}/usr/src/classmate_laptop-%{version}/
 /usr/src/classmate_laptop-%{version}/*
 
 %post
-/usr/sbin/dkms add -m classmate_laptop -v %{version}
-/usr/sbin/dkms build -m classmate_laptop -v %{version}
-/usr/sbin/dkms install -m classmate_laptop -v %{version}
+/usr/sbin/dkms --rpm_safe_upgrade add -m classmate_laptop -v %{version}
+/usr/sbin/dkms --rpm_safe_upgrade build -m classmate_laptop -v %{version}
+/usr/sbin/dkms --rpm_safe_upgrade install -m classmate_laptop -v %{version} --force
+
+# rmmod any old driver if present and not in use (e.g. by X)
+rmmod classmate_laptop > /dev/null 2>&1 || true
 
 %preun
-/usr/sbin/dkms remove -m classmate_laptop -v %{version} --all
+/usr/sbin/dkms --rpm_safe_upgrade remove -m classmate_laptop -v %{version} --all
+
+# rmmod any old driver if present and not in use (e.g. by X)
+rmmod classmate_laptop > /dev/null 2>&1 || true
