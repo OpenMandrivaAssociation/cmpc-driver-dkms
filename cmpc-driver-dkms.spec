@@ -42,3 +42,14 @@ rmmod classmate_laptop > /dev/null 2>&1 || true
 
 # rmmod any old driver if present and not in use (e.g. by X)
 rmmod classmate_laptop > /dev/null 2>&1 || true
+
+
+%changelog
+* Sat Dec 10 2011 Александр Казанцев <kazancas@mandriva.org> 0.1.1-3mdv2012.0
++ Revision: 740039
+- fix dkms add and remove for safetly update
+
+* Wed Dec 07 2011 Александр Казанцев <kazancas@mandriva.org> 0.1.1-2
++ Revision: 738559
+- imported package cmpc-driver-dkms
+
