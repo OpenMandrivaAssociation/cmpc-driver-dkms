@@ -1,6 +1,6 @@
 Name:			cmpc-driver-dkms
 Version:		0.1.1
-Release:		%mkrel 3
+Release:		4
 
 Summary:        Driver for Classmate PC
 License:        GPLv2+
